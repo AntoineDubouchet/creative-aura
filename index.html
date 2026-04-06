@@ -605,15 +605,13 @@ Pin GND ──────── GND  ────────► Fil blanc (mas
         <table>
           <tr><th>Paramètre</th><th>Valeur</th><th>Notes</th></tr>
           <tr><td>SSID</td><td><code>CASINO_CTRL</code></td><td>Visible par défaut, maskable via paramètre softAP</td></tr>
-          <tr><td>Mot de passe</td><td><code>casino123</code></td><td>WPA2 — à changer en production</td></tr>
-          <tr><td>Sécurité</td><td>WPA2-PSK</td><td>Chiffrement AES</td></tr>
-          <tr><td>Canal WiFi</td><td>1 (configurable)</td><td>Paramètre 3 de WiFi.softAP()</td></tr>
+          <tr><td>Mot de passe</td><td><code>casino123</code></td><td>—</td></tr>
+          <tr><td>Sécurité</td><td>WPA2-PSK</td><td>—</td></tr>
           <tr><td>IP contrôleur</td><td><code>192.168.4.1</code></td><td>Assignée par défaut par le softAP ESP32</td></tr>
           <tr><td>Plage DHCP</td><td><code>192.168.4.2 — 192.168.4.254</code></td><td>Attribuée automatiquement aux nodes</td></tr>
-          <tr><td>IP broadcast UDP</td><td><code>192.168.4.255</code></td><td>Atteint tous les clients simultanément</td></tr>
           <tr><td>Port UDP</td><td><code>4210</code></td><td>Commandes contrôleur → nodes et pings nodes → contrôleur</td></tr>
           <tr><td>Port HTTP</td><td><code>80</code></td><td>Backoffice web — GET uniquement</td></tr>
-          <tr><td>Clients max</td><td>20</td><td>Paramètre 5 de WiFi.softAP(..., 20)</td></tr>
+          <tr><td>Clients max</td><td>20 via ESP32</td><td>—</td></tr>
         </table>
       </div>
 
@@ -661,7 +659,6 @@ NODE ESP32 (x N)
           <tr><td>Ping node → contrôleur</td><td>Toutes les 5s</td><td><code>PING:X</code></td><td>Met à jour <code>nodes[i].dernierPing = millis()</code></td></tr>
           <tr><td>Timeout détection</td><td>15s sans ping</td><td>—</td><td><code>nodes[i].online = false</code> → badge "Hors ligne"</td></tr>
           <tr><td>Reconnexion automatique</td><td>Prochain ping reçu</td><td><code>PING:X</code></td><td><code>nodes[i].online = true</code></td></tr>
-          <tr><td>Nouveau node inconnu</td><td>Premier ping</td><td><code>PING:X</code></td><td>Crée l'entrée + sauvegarde flash</td></tr>
         </table>
       </div>
 
@@ -1135,8 +1132,7 @@ else → delai = 380 + (8-steps+1)/8 × 120ms  // jusqu'à 500ms</pre>
         <ul>
           <li><strong>Version RS485 filaire</strong> — bus RS485 jusqu'à 1200m, module MAX485 par node, protocole identique</li>
           <li><strong>Certification GLI / BMM</strong> — True RNG hardware, journal cryptographique, audit tiers</li>
-          <li><strong>API REST formelle</strong> — versioning v1, Bearer token, documentation OpenAPI/Swagger</li>
-          <li><strong>Intégration CRM casino</strong> — déclenchement tirage depuis logiciel casino avec machine gagnante prédéfinie</li>
+          <li><strong>API REST formelle</strong> — versioning v1, token, documentation OpenAPI/Swagger</li>
         </ul>
       </div>
     </div>

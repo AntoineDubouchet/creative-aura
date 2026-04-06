@@ -211,17 +211,17 @@
       <div class="hero">
         <div class="hero-badge">Présentation</div>
         <h1>Modes de tirage</h1>
-        <p>Trois façons d'animer votre salle selon l'événement.</p>
+        <p>Trois façons d'animer votre salle.</p>
       </div>
 
       <div class="section">
         <div class="section-title">Mode 1 — Roulette classique</div>
-        <p>La roulette tourne sur toutes les machines, une seule gagnante. Animation or avec pulsation douce infinie jusqu'au prochain tirage. Le mode idéal pour les soirées simples.</p>
+        <p>La roulette tourne sur toutes les machines, une seule gagnante. Animation or avec pulsation jusqu'au prochain tirage.</p>
       </div>
 
       <div class="section">
         <div class="section-title">Mode 2 — Multi-gagnantes</div>
-        <p>De 2 à 6 gagnantes successives. Chaque roulette désigne une machine qui s'illumine dans une couleur unique et garde sa couleur pendant que les suivantes se jouent. À la fin, toutes les gagnantes célèbrent ensemble en arc-en-ciel.</p>
+        <p>De 2 à 6 gagnantes successives. Chaque roulette désigne une machine qui s'illumine dans une couleur et garde sa couleur pendant que les suivantes se jouent. À la fin, toutes les gagnantes célèbrent ensemble en arc-en-ciel.</p>
         <table>
           <tr><th>Rang</th><th>Couleur</th><th>Hex</th></tr>
           <tr><td>1ère gagnante</td><td><span class="badge" style="background:#ffe0e0;color:#c00">Rouge</span></td><td><code>FF0000</code></td></tr>
@@ -235,7 +235,7 @@
 
       <div class="section">
         <div class="section-title">Mode 3 — Plage personnalisée</div>
-        <p>Le tirage est restreint à une plage de numéros de machines définie — par exemple de la machine 10 à la 50. Idéal pour les zones VIP, les secteurs thématiques ou les événements ciblés.</p>
+        <p>Le tirage est restreint à une plage de numéros de machines définie — par exemple de la machine 10 à la 50.</p>
       </div>
 
       <div class="section">
@@ -262,11 +262,11 @@
       <div class="section">
         <p>Entre les tirages, les machines ne sont pas éteintes. Le système propose 6 modes d'ambiance pour maintenir une atmosphère lumineuse cohérente avec chaque événement.</p>
         <div class="cards">
-          <div class="card"><div class="card-icon">🌙</div><div class="card-title">Veille</div><div class="card-desc">Bleu nuit très discret (20, 20, 40). Les machines restent présentes sans s'imposer.</div></div>
-          <div class="card"><div class="card-icon">💗</div><div class="card-title">St Valentin</div><div class="card-desc">Fondu doux rose (220,20,100) vers rouge (200,0,0). Parfait pour les soirées romantiques.</div></div>
-          <div class="card"><div class="card-icon">🎄</div><div class="card-title">Noël</div><div class="card-desc">Fond rouge avec scintillements blancs aléatoires. Ambiance fête de fin d'année.</div></div>
-          <div class="card"><div class="card-icon">🎃</div><div class="card-title">Halloween</div><div class="card-desc">Fondu violet (148,0,211) vers orange (255,50,0). Une ambiance qui colle à la nuit.</div></div>
-          <div class="card"><div class="card-icon">🌈</div><div class="card-title">Arc-en-ciel</div><div class="card-desc">Spectre complet HSV réparti sur les bandes. Festif et coloré.</div></div>
+          <div class="card"><div class="card-icon">🌙</div><div class="card-title">Veille</div><div class="card-desc">Bleu nuit très discret (20, 20, 40).</div></div>
+          <div class="card"><div class="card-icon">💗</div><div class="card-title">St Valentin</div><div class="card-desc">Fondu doux rose (220,20,100) vers rouge (200,0,0).</div></div>
+          <div class="card"><div class="card-icon">🎄</div><div class="card-title">Noël</div><div class="card-desc">Fond rouge avec scintillements blancs aléatoires.</div></div>
+          <div class="card"><div class="card-icon">🎃</div><div class="card-title">Halloween</div><div class="card-desc">Fondu violet (148,0,211) vers orange (255,50,0).</div></div>
+          <div class="card"><div class="card-icon">🌈</div><div class="card-title">Arc-en-ciel</div><div class="card-desc">Spectre complet HSV réparti sur les bandes.</div></div>
           <div class="card"><div class="card-icon">🎨</div><div class="card-title">Couleur libre</div><div class="card-desc">Choisissez n'importe quelle couleur depuis le sélecteur. Adaptable à votre charte.</div></div>
         </div>
       </div>
@@ -303,7 +303,7 @@
       <div class="section">
         <div class="section-title">Installation d'une machine — 3 étapes</div>
         <div class="steps">
-          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Fixer la bande LED</div><div class="step-desc">Coller le profilé aluminium sous ou sur le côté de la machine. Brancher DATA sur la pin G5 du boîtier ESP32.</div></div></div>
+          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Fixer la LIGHTNODE</div><div class="step-desc">Coller le bouzin derriere une machine a sous.</div></div></div>
           <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Alimenter le boîtier</div><div class="step-desc">Câble USB dans une prise standard. Le boîtier démarre automatiquement.</div></div></div>
           <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Configurer le numéro</div><div class="step-desc">Connecter le téléphone au réseau NODE_XXXXXX, saisir le numéro de la machine, valider. LEDs vertes = succès.</div></div></div>
         </div>
@@ -325,9 +325,8 @@
       <div class="section">
         <div class="section-title">Ce qui différencie le produit</div>
         <ul>
-          <li>Aucun concurrent ne propose de lumière physique sur les machines à ce tarif</li>
           <li>Overlay non intrusif — pas de modification des machines, pas d'homologation</li>
-          <li>Totalement sans fil — fonctionne dans n'importe quelle salle</li>
+          <li>Totalement sans fil </li>
           <li>Scalable — de 2 à 500 machines sans modification du système</li>
           <li>Interface pensée pour le terrain — un responsable non technicien peut tout gérer seul</li>
         </ul>
@@ -339,7 +338,6 @@
           <div class="stat-block"><div class="stat-value">6</div><div class="stat-label">Nodes en production</div></div>
           <div class="stat-block"><div class="stat-value">3</div><div class="stat-label">Modes de tirage</div></div>
           <div class="stat-block"><div class="stat-value">6</div><div class="stat-label">Modes ambiance</div></div>
-          <div class="stat-block"><div class="stat-value">20</div><div class="stat-label">Nodes max actuellement</div></div>
         </div>
       </div>
 
@@ -353,7 +351,6 @@
           <tr><td><span class="badge badge-blue">Moyen terme</span></td><td>Mode démo autonome</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
           <tr><td><span class="badge badge-blue">Moyen terme</span></td><td>Mise à jour OTA (Over The Air)</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
           <tr><td><span class="badge badge-green">Long terme</span></td><td>Version RS485 pour 200+ machines</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
-          <tr><td><span class="badge badge-green">Long terme</span></td><td>Multi-salles & contrôleur central</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
           <tr><td><span class="badge badge-green">Long terme</span></td><td>Certification casino réglementée</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
         </table>
       </div>
@@ -409,8 +406,9 @@ LED    LED    LED          LED</pre>
         <div class="section-title">Par Light Node</div>
         <ul>
           <li>1x ESP32 AZ-Delivery</li>
+          <li>1x boîtier ABS type Hammond Manufacturing série 1591</li>
           <li>1x bande LED WS2812 — longueur adaptée à la machine (14 LEDs recommandées)</li>
-          <li>1x profilé aluminium pour bande LED avec couvercle diffusant</li>
+          <li>1x profilé aluminium pour bande LED avec couvercle diffusant (à voir)</li>
           <li>Câbles Dupont ou connecteurs rapides pour le câblage</li>
           <li>1x boîtier ABS pour l'ESP32 du node</li>
         </ul>
@@ -423,10 +421,6 @@ LED    LED    LED          LED</pre>
           <tr><td>GND</td><td>GND</td><td>⚫ Blanc / Noir</td></tr>
           <tr><td>DATA</td><td>GPIO 5 (G5)</td><td>🟢 Vert</td></tr>
         </table>
-        <div class="alert alert-warning">
-          <div class="alert-icon">⚠️</div>
-          <div class="alert-content"><strong>Alimentation externe obligatoire</strong>Pour les bandes de plus de 30 LEDs, utiliser une alimentation externe 5V dédiée. Ne pas alimenter via le pin 5V de l'ESP32 qui est limité à 500mA.</div>
-        </div>
       </div>
     </div>
 
@@ -445,7 +439,7 @@ LED    LED    LED          LED</pre>
           <tr><td>IP du contrôleur</td><td><code>192.168.4.1</code></td></tr>
           <tr><td>Port UDP</td><td><code>4210</code></td></tr>
           <tr><td>Adresse broadcast</td><td><code>192.168.4.255</code></td></tr>
-          <tr><td>Clients max</td><td>20</td></tr>
+          <tr><td>Clients max</td><td>20 actuellement</td></tr>
           <tr><td>Sécurité</td><td>WPA2</td></tr>
         </table>
       </div>
@@ -507,11 +501,11 @@ LED    LED    LED          LED</pre>
       <div class="section">
         <div class="section-title">Modes de tirage</div>
         <h3>Roulette classique</h3>
-        <p>Animation de roulette sur toutes les machines avec ralentissement dramatique. Une seule machine gagnante, animation or avec pulsation.</p>
+        <p>Animation de roulette sur toutes les machines avec ralentissement. Une seule machine gagnante, animation or avec pulsation.</p>
         <h3>Multi-gagnantes</h3>
         <p>Enchaînement de 2 à 6 roulettes successives. Chaque gagnante s'illumine dans une couleur unique et garde sa couleur jusqu'au reset. Célébration arc-en-ciel à la fin.</p>
         <h3>Plage personnalisée</h3>
-        <p>Tirage restreint à une plage de numéros de machines définie. Utile pour les zones VIP ou secteurs spécifiques de la salle.</p>
+        <p>Tirage restreint à une plage de numéros de machines définie. Utile pour les zones spécifiques de la salle.</p>
       </div>
       <div class="section">
         <div class="section-title">Paramètres</div>
@@ -538,7 +532,7 @@ LED    LED    LED          LED</pre>
           <tr><td>Flash blanc</td><td><code>FLASH_START</code></td><td>Toutes les LEDs blanc 200ms au démarrage</td></tr>
           <tr><td>Roulette cyan</td><td>Numéro courant</td><td>La machine courante s'allume en cyan</td></tr>
           <tr><td>Ralentissement</td><td>Phase finale</td><td>Puissance 3, 12 steps, 380ms max — très progressif</td></tr>
-          <tr><td>Flash or gagnant</td><td><code>WIN</code> / <code>WIN_COLOR</code></td><td>8 flashs rapides puis pulsation douce infinie</td></tr>
+          <tr><td>Flash or gagnant</td><td><code>WIN</code> / <code>WIN_COLOR</code></td><td>8 flashs rapides puis pulsation</td></tr>
           <tr><td>Pulsation</td><td>Après les flashs</td><td>Oscillation 30%↔100% de la couleur gagnante</td></tr>
           <tr><td>Arc-en-ciel</td><td><code>CELEBRATE</code></td><td>3 secondes d'arc-en-ciel puis retour couleur gagnante</td></tr>
         </table>
@@ -685,13 +679,8 @@ LED    LED    LED          LED</pre>
         <table>
           <tr><th>Symptôme</th><th>Cause probable</th><th>Solution</th></tr>
           <tr><td>Deux nodes ont le même numéro</td><td>Cache WiFi iPhone</td><td>Oublier le réseau entre chaque configuration</td></tr>
-          <tr><td>Node hors ligne alors qu'il est branché</td><td>WiFi perdu après inactivité</td><td>Vérifier la portée WiFi — le node se reconnecte automatiquement</td></tr>
-          <tr><td>Erreur upload exit status 2</td><td>Problème connexion USB</td><td>Maintenir BOOT pendant upload, ou baisser la vitesse à 115200</td></tr>
-          <tr><td>La roulette ne s'arrête jamais</td><td>Plage incohérente avec le gagnant</td><td>Vérifier que plageMin ≤ numéro gagnant ≤ plageMax</td></tr>
-          <tr><td>LEDs restent allumées après tirage</td><td>Node en état gagnant (etat=2)</td><td>Appuyer sur Réinitialiser pour envoyer RESET_LEDS</td></tr>
+          <tr><td>Erreur upload exit status 2</td><td>Problème connexion USB pendant téléversement</td><td>Maintenir BOOT pendant upload, ou baisser la vitesse à 115200</td></tr>
           <tr><td>Le menu Node se ferme seul</td><td>Reconstruction HTML par le poll</td><td>Résolu : lnSilent() / lzSilent() préservent l'état ouvert</td></tr>
-          <tr><td>Impossible de se connecter au WiFi</td><td>Limite de clients WiFi atteinte</td><td>Max 20 clients configuré via WiFi.softAP(..., 20)</td></tr>
-          <tr><td>Node 6 ne s'allume jamais</td><td>Bug modulo quand gagnante = nbPlage</td><td>Résolu dans la dernière version du contrôleur</td></tr>
         </table>
       </div>
     </div>
@@ -705,10 +694,8 @@ LED    LED    LED          LED</pre>
       <div class="section">
         <div class="section-title">Court terme</div>
         <ul>
-          <li>Tests de stabilité avec plus de 10 nodes simultanés</li>
-          <li>Authentification du backoffice — mot de passe pour sécuriser l'accès</li>
+          <li>Tests de stabilité avec plus de 20 puis 40 nodes simultanés</li>
           <li>Réglage de luminosité depuis le backoffice</li>
-          <li>NUM_LEDS configurable sans recompilation</li>
         </ul>
       </div>
       <div class="section">
@@ -717,16 +704,11 @@ LED    LED    LED          LED</pre>
           <li>Boîtier industriel sur mesure avec connectique rapide</li>
           <li>Mode démo autonome — tirages automatiques en boucle</li>
           <li>Mise à jour OTA (Over The Air) via WiFi</li>
-          <li>Sauvegarde persistante des 100 derniers tirages</li>
-          <li>Personnalisation par casino — logo, couleurs, nom de l'établissement</li>
         </ul>
       </div>
       <div class="section">
         <div class="section-title">Long terme</div>
         <ul>
-          <li>Version RS485 filaire pour grandes installations (200+ machines)</li>
-          <li>Multi-salles — contrôleur central pilotant plusieurs salles simultanément</li>
-          <li>Intégration CRM / carte de fidélité</li>
           <li>Certification casino pour usage professionnel réglementé (GLI / BMM)</li>
           <li>API REST formelle avec authentification par token</li>
         </ul>
@@ -770,7 +752,7 @@ LED    LED    LED          LED</pre>
       <div class="section">
         <div class="section-title">Adressage des nodes</div>
         <p>Chaque node est identifié par un numéro entier de 1 à 999 stocké en mémoire flash. Ce numéro correspond au numéro de la machine à sous physique dans la salle.</p>
-        <p>En mode configuration, le réseau WiFi du node est nommé <code>NODE_XXXXXX</code> où XXXXXX est le suffixe hexadécimal des 3 derniers octets de l'adresse MAC — garantissant l'unicité même avec des dizaines de nodes.</p>
+        <p>En mode configuration, le réseau WiFi du node est nommé <code>NODE_XXXXXX</code> où XXXXXX est le suffixe de l'adresse MAC — garantissant l'unicité même avec des dizaines de nodes.</p>
       </div>
     </div>
 

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casino Light Node — Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <svg width="32" height="32" viewBox="0 0 100 100">
+      <polygon points="50,8 95,88 5,88" fill="#e60000"/>
+      <polygon points="50,30 72,72 28,72" fill="#c00000"/>
+      <polygon points="50,46 62,68 38,68" fill="white"/>
+    </svg>
+    <div class="logo-text">
+      <div class="brand">Creative. Aura</div>
+      <div class="sub">Casino Light Node</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+
+    <!-- PRÉSENTATION -->
+    <div class="nav-section">Présentation</div>
+    <a class="nav-link active" onclick="go('intro')">
+      <span class="nav-dot"></span>Introduction
+    </a>
+    <a class="nav-link" onclick="go('concept')">Le concept</a>
+    <a class="nav-link" onclick="go('modes')">Modes de tirage</a>
+    <a class="nav-link" onclick="go('ambiances')">Ambiances lumineuses</a>
+    <a class="nav-link" onclick="go('interface')">Interface & installation</a>
+    <a class="nav-link" onclick="go('roadmap')">Perspectives</a>
+
+    <!-- TECHNIQUE -->
+    <div class="nav-section">Documentation technique</div>
+    <a class="nav-link" onclick="go('architecture')">Architecture</a>
+    <a class="nav-link" onclick="go('materiel')">Matériel requis</a>
+    <a class="nav-link" onclick="go('reseau')">Architecture réseau</a>
+    <a class="nav-link" onclick="go('protocole')">Protocole UDP</a>
+    <a class="nav-link" onclick="go('backoffice')">Backoffice web</a>
+    <a class="nav-link" onclick="go('animations')">Animations LED</a>
+    <a class="nav-link" onclick="go('configuration')">Configuration des nodes</a>
+    <a class="nav-link" onclick="go('routes')">Routes HTTP</a>
+    <a class="nav-link" onclick="go('dependances')">Dépendances</a>
+    <a class="nav-link" onclick="go('problemes')">Problèmes connus</a>
+    <a class="nav-link" onclick="go('evolutions')">Évolutions prévues</a>
+    <a class="nav-link" onclick="go('annexes')">Annexes</a>
+
+    <!-- FAQ -->
+    <div class="nav-section">FAQ Technique</div>
+    <a class="nav-link" onclick="go('faq-archi')">Architecture & Communication</a>
+    <a class="nav-link" onclick="go('faq-fiab')">Fiabilité & Stabilité</a>
+    <a class="nav-link" onclick="go('faq-tirage')">Tirage & Équité</a>
+    <a class="nav-link" onclick="go('faq-bo')">Backoffice & Interface</a>
+    <a class="nav-link" onclick="go('faq-config')">Configuration</a>
+    <a class="nav-link" onclick="go('faq-leds')">LEDs & Animations</a>
+    <a class="nav-link" onclick="go('faq-zones')">Zones</a>
+    <a class="nav-link" onclick="go('faq-secu')">Sécurité & Casino</a>
+    <a class="nav-link" onclick="go('faq-evol')">Évolutivité & Avenir</a>
+    <a class="nav-link" onclick="go('faq-cout')">Coût & Maintenance</a>
+
+  </nav>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">Introduction</div>
+    <div class="topbar-breadcrumb">v1.0 — Avril 2026 — <span>Confidentiel</span></div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══════════════════════════════════════
+         PRÉSENTATION
+    ═══════════════════════════════════════ -->
+
+    <!-- INTRO -->
+    <div class="page active" id="page-intro">
+      <div class="hero">
+        <div class="hero-badge">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#e60000"/></svg>
+          Prototype fonctionnel
+        </div>
+        <h1>Casino Light Node</h1>
+        <p>Système de tirage au sort lumineux pour casinos. Chaque machine à sous s'anime lors d'un tirage via un effet de roulette lumineuse synchronisé — sans modifier les machines existantes.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">📡 <strong>WiFi UDP</strong> — Communication sans fil</div>
+          <div class="hero-meta-item">⚡ <strong>ESP32</strong> — Microcontrôleur</div>
+          <div class="hero-meta-item">💡 <strong>WS2812</strong> — LEDs adressables</div>
+          <div class="hero-meta-item">📱 <strong>Backoffice mobile</strong> — Interface web</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Changelog</div>
+
+        <div class="changelog-item">
+          <div class="changelog-date">Avr. 2026</div>
+          <div class="changelog-dot"></div>
+          <div class="changelog-body">
+            <div class="changelog-title">Sauvegarde persistante & 6 nodes en production</div>
+            <div class="changelog-desc">Nodes, zones et paramètres sauvegardés en mémoire flash (Preferences). Système testé avec 6 nodes simultanées. Correction du bug node 6 (modulo). Limite WiFi montée à 20 clients. Sélecteur de zone cible dans l'onglet Tirage.</div>
+          </div>
+        </div>
+
+        <div class="changelog-item">
+          <div class="changelog-date">Mar. 2026</div>
+          <div class="changelog-dot"></div>
+          <div class="changelog-body">
+            <div class="changelog-title">Système de zones & ambiances ciblées</div>
+            <div class="changelog-desc">Création de zones dynamiques avec assignation de nodes. Commande NODE_AMBIANCE pour cibler une zone sans affecter les autres. Renommage inline des zones. Menus déroulants stables avec rafraîchissement silencieux.</div>
+          </div>
+        </div>
+
+        <div class="changelog-item">
+          <div class="changelog-date">Fév. 2026</div>
+          <div class="changelog-dot"></div>
+          <div class="changelog-body">
+            <div class="changelog-title">Mode multi-gagnantes & animations fluides</div>
+            <div class="changelog-desc">Mode multi-gagnantes (2 à 6 machines). Célébration arc-en-ciel. Backoffice 6 onglets. Couleur individuelle par node. Ralentissement roulette revu (puissance 3, 12 steps, 380ms max).</div>
+          </div>
+        </div>
+
+        <div class="changelog-item">
+          <div class="changelog-date">Jan. 2026</div>
+          <div class="changelog-dot"></div>
+          <div class="changelog-body">
+            <div class="changelog-title">Prototype initial — Roulette classique</div>
+            <div class="changelog-desc">Architecture contrôleur/nodes ESP32. Communication UDP broadcast. Backoffice web embarqué. Modes ambiance (veille, St Valentin, Noël, Halloween, Arc-en-ciel). Premier déploiement 3 nodes.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CONCEPT -->
+    <div class="page" id="page-concept">
+      <div class="hero">
+        <div class="hero-badge">Présentation</div>
+        <h1>Le concept</h1>
+        <p>Transformer un tirage au sort ordinaire en événement mémorable qui anime toute la salle.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Le problème</div>
+        <p>Aujourd'hui dans les casinos, un tirage au sort se résume à un papier tiré dans une urne ou un affichage sur écran. Le moment manque de théâtralité — les joueurs ne regardent pas, l'émotion collective est absente.</p>
+        <p><strong>Casino Light Node change ça.</strong> Chaque machine à sous est équipée d'une bande LED discrète. Au moment du tirage, les lumières s'allument une par une, créent un effet de roulette dans toute la salle, ralentissent progressivement... jusqu'à ce qu'une machine s'illumine en or.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Ce que ça apporte</div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">🎰</div>
+            <div class="card-title">Expérience immersive</div>
+            <div class="card-desc">La lumière attire l'attention de toute la salle. Même les joueurs non participants regardent.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📱</div>
+            <div class="card-title">Contrôle mobile</div>
+            <div class="card-desc">Le responsable lance le tirage depuis son téléphone en une seconde, sans ordinateur dédié.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <div class="card-title">Non intrusif</div>
+            <div class="card-desc">Bande LED sous la machine. Aucune modification de la machine elle-même. Pas d'homologation nécessaire.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <div class="card-title">Personnalisable</div>
+            <div class="card-desc">Couleurs, ambiances, nombre de gagnants — tout se configure depuis l'interface.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Les deux composants</div>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-icon">🎛</div>
+            <div class="card-title">Contrôleur — 1 par salle</div>
+            <div class="card-desc">Crée le réseau WiFi · Héberge le backoffice · Tire le gagnant · Envoie les commandes</div>
+          </div>
+          <div class="card">
+            <div class="card-icon">💡</div>
+            <div class="card-title">Light Node — 1 par machine</div>
+            <div class="card-desc">Se connecte au WiFi · Reçoit les commandes · Pilote la bande LED · Envoie un ping toutes les 5s</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Le déroulement d'un tirage</div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Ouverture du backoffice</div><div class="step-desc">Connecté au WiFi CASINO_CTRL, le responsable accède à l'interface via 192.168.4.1 dans son navigateur.</div></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Choix du mode et lancement</div><div class="step-desc">Roulette classique, multi-gagnantes ou plage personnalisée. Un seul bouton suffit.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Animation dans toute la salle</div><div class="step-desc">Flash blanc de départ, roulette qui tourne sur les machines, ralentissement progressif, suspense sur les dernières machines.</div></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">La machine gagnante s'illumine</div><div class="step-desc">Flashs lumineux, puis pulsation douce infinie. En multi-gagnantes, chaque gagnante garde sa couleur unique.</div></div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Célébration</div><div class="step-desc">En mode multi-gagnantes, toutes les machines gagnantes s'animent en arc-en-ciel pendant 3 secondes.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODES -->
+    <div class="page" id="page-modes">
+      <div class="hero">
+        <div class="hero-badge">Présentation</div>
+        <h1>Modes de tirage</h1>
+        <p>Trois façons d'animer votre salle selon l'événement.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Mode 1 — Roulette classique</div>
+        <p>La roulette tourne sur toutes les machines, une seule gagnante. Animation or avec pulsation douce infinie jusqu'au prochain tirage. Le mode idéal pour les soirées simples.</p>
+        <div class="alert alert-info">
+          <div class="alert-icon">💡</div>
+          <div class="alert-content"><strong>Paramètre clé</strong>Le résultat est décidé AVANT le début de l'animation — exactement comme une vraie machine à sous. L'animation est une représentation théâtrale d'un résultat déjà calculé.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Mode 2 — Multi-gagnantes</div>
+        <p>De 2 à 6 gagnantes successives. Chaque roulette désigne une machine qui s'illumine dans une couleur unique et garde sa couleur pendant que les suivantes se jouent. À la fin, toutes les gagnantes célèbrent ensemble en arc-en-ciel.</p>
+        <table>
+          <tr><th>Rang</th><th>Couleur</th><th>Hex</th></tr>
+          <tr><td>1ère gagnante</td><td><span class="badge" style="background:#ffe0e0;color:#c00">Rouge</span></td><td><code>FF0000</code></td></tr>
+          <tr><td>2ème gagnante</td><td><span class="badge" style="background:#e0e8ff;color:#003c96">Bleu</span></td><td><code>0000FF</code></td></tr>
+          <tr><td>3ème gagnante</td><td><span class="badge" style="background:#e0ffe0;color:#006600">Vert</span></td><td><code>00CC00</code></td></tr>
+          <tr><td>4ème gagnante</td><td><span class="badge" style="background:#fffbe0;color:#806600">Jaune</span></td><td><code>FFFF00</code></td></tr>
+          <tr><td>5ème gagnante</td><td><span class="badge" style="background:#ffe0f5;color:#8c0066">Rose</span></td><td><code>FF69B4</code></td></tr>
+          <tr><td>6ème gagnante</td><td><span class="badge" style="background:#e0ffff;color:#006666">Cyan</span></td><td><code>00FFFF</code></td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Mode 3 — Plage personnalisée</div>
+        <p>Le tirage est restreint à une plage de numéros de machines définie — par exemple de la machine 10 à la 50. Idéal pour les zones VIP, les secteurs thématiques ou les événements ciblés.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Paramètres configurables</div>
+        <table>
+          <tr><th>Paramètre</th><th>Valeur</th><th>Effet</th></tr>
+          <tr><td>Vitesse</td><td>1 à 10</td><td>Durée de la phase rapide — 10 = très rapide et intense</td></tr>
+          <tr><td>Nombre de machines</td><td>2 à 500</td><td>Ajusté automatiquement selon les nodes connectés</td></tr>
+          <tr><td>Gagnantes</td><td>2 à 6</td><td>Nombre de machines récompensées en mode multi</td></tr>
+          <tr><td>Plage</td><td>De X à Y</td><td>Restreindre le tirage à un secteur de la salle</td></tr>
+          <tr><td>Zone cible</td><td>Zone créée</td><td>Restreindre aux nodes d'une zone spécifique</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- AMBIANCES -->
+    <div class="page" id="page-ambiances">
+      <div class="hero">
+        <div class="hero-badge">Présentation</div>
+        <h1>Ambiances lumineuses</h1>
+        <p>Votre salle vit au rythme de vos événements entre les tirages.</p>
+      </div>
+
+      <div class="section">
+        <p>Entre les tirages, les machines ne sont pas éteintes. Le système propose 6 modes d'ambiance pour maintenir une atmosphère lumineuse cohérente avec chaque événement.</p>
+        <div class="cards">
+          <div class="card"><div class="card-icon">🌙</div><div class="card-title">Veille</div><div class="card-desc">Bleu nuit très discret (20, 20, 40). Les machines restent présentes sans s'imposer.</div></div>
+          <div class="card"><div class="card-icon">💗</div><div class="card-title">St Valentin</div><div class="card-desc">Fondu doux rose (220,20,100) vers rouge (200,0,0). Parfait pour les soirées romantiques.</div></div>
+          <div class="card"><div class="card-icon">🎄</div><div class="card-title">Noël</div><div class="card-desc">Fond rouge avec scintillements blancs aléatoires. Ambiance fête de fin d'année.</div></div>
+          <div class="card"><div class="card-icon">🎃</div><div class="card-title">Halloween</div><div class="card-desc">Fondu violet (148,0,211) vers orange (255,50,0). Une ambiance qui colle à la nuit.</div></div>
+          <div class="card"><div class="card-icon">🌈</div><div class="card-title">Arc-en-ciel</div><div class="card-desc">Spectre complet HSV réparti sur les bandes. Festif et coloré.</div></div>
+          <div class="card"><div class="card-icon">🎨</div><div class="card-title">Couleur libre</div><div class="card-desc">Choisissez n'importe quelle couleur depuis le sélecteur. Adaptable à votre charte.</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Ambiances par zone</div>
+        <p>Chaque zone peut avoir sa propre ambiance indépendante. La commande <code>NODE_AMBIANCE</code> cible précisément les nodes d'une zone sans affecter les autres.</p>
+        <p>Chaque machine peut également recevoir une couleur individuelle indépendante — pour signaler une machine VIP, une zone premium ou une machine hors service.</p>
+      </div>
+    </div>
+
+    <!-- INTERFACE -->
+    <div class="page" id="page-interface">
+      <div class="hero">
+        <div class="hero-badge">Présentation</div>
+        <h1>Interface & Installation</h1>
+        <p>Pensé pour être simple à utiliser au quotidien, sans compétence technique.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Le backoffice — accessible depuis n'importe quel téléphone</div>
+        <p>Aucune application à installer. Le responsable se connecte au WiFi de la salle puis ouvre son navigateur. L'interface s'adapte automatiquement à l'iPhone comme à l'Android.</p>
+        <table>
+          <tr><th>Onglet</th><th>Ce qu'on y fait</th></tr>
+          <tr><td><strong>Tirage</strong></td><td>Choisir le mode, configurer la vitesse et la plage, lancer, suivre en direct, stopper</td></tr>
+          <tr><td><strong>Nodes</strong></td><td>Voir quelles machines sont connectées, changer leur couleur individuellement</td></tr>
+          <tr><td><strong>Ambiance</strong></td><td>Sélectionner l'ambiance lumineuse de la salle entre les tirages</td></tr>
+          <tr><td><strong>Zones</strong></td><td>Créer, renommer, gérer les zones et leurs assignations de nodes</td></tr>
+          <tr><td><strong>Historique</strong></td><td>Consulter tous les tirages de la journée avec l'heure et le mode</td></tr>
+          <tr><td><strong>Paramètres</strong></td><td>Réinitialiser les machines, effacer la mémoire flash</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Installation d'une machine — 3 étapes</div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Fixer la bande LED</div><div class="step-desc">Coller le profilé aluminium sous ou sur le côté de la machine. Brancher DATA sur la pin G5 du boîtier ESP32.</div></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Alimenter le boîtier</div><div class="step-desc">Câble USB dans une prise standard. Le boîtier démarre automatiquement.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Configurer le numéro</div><div class="step-desc">Connecter le téléphone au réseau NODE_XXXXXX, saisir le numéro de la machine, valider. LEDs vertes = succès.</div></div></div>
+        </div>
+        <div class="alert alert-success">
+          <div class="alert-icon">✓</div>
+          <div class="alert-content">Une fois configuré, le node se reconnecte automatiquement à chaque démarrage. Aucune intervention quotidienne nécessaire.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="page" id="page-roadmap">
+      <div class="hero">
+        <div class="hero-badge">Présentation</div>
+        <h1>Points forts & Perspectives</h1>
+        <p>Un prototype abouti avec un fort potentiel de développement.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Ce qui différencie le produit</div>
+        <ul>
+          <li>Aucun concurrent ne propose de lumière physique sur les machines à ce tarif</li>
+          <li>Overlay non intrusif — pas de modification des machines, pas d'homologation</li>
+          <li>Totalement sans fil — fonctionne dans n'importe quelle salle</li>
+          <li>Scalable — de 2 à 500 machines sans modification du système</li>
+          <li>Interface pensée pour le terrain — un responsable non technicien peut tout gérer seul</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Statut actuel</div>
+        <div class="cards">
+          <div class="stat-block"><div class="stat-value">6</div><div class="stat-label">Nodes en production</div></div>
+          <div class="stat-block"><div class="stat-value">3</div><div class="stat-label">Modes de tirage</div></div>
+          <div class="stat-block"><div class="stat-value">6</div><div class="stat-label">Modes ambiance</div></div>
+          <div class="stat-block"><div class="stat-value">20</div><div class="stat-label">Nodes max actuellement</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Prochaines étapes</div>
+        <table>
+          <tr><th>Horizon</th><th>Évolution</th><th>Statut</th></tr>
+          <tr><td><span class="badge badge-red">Court terme</span></td><td>Tests en salle réelle avec 10+ machines</td><td><span class="badge badge-gray">En cours</span></td></tr>
+          <tr><td><span class="badge badge-red">Court terme</span></td><td>Authentification du backoffice</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-blue">Moyen terme</span></td><td>Boîtier industriel sur mesure</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-blue">Moyen terme</span></td><td>Mode démo autonome</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-blue">Moyen terme</span></td><td>Mise à jour OTA (Over The Air)</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-green">Long terme</span></td><td>Version RS485 pour 200+ machines</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-green">Long terme</span></td><td>Multi-salles & contrôleur central</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+          <tr><td><span class="badge badge-green">Long terme</span></td><td>Certification casino réglementée</td><td><span class="badge badge-gray">Roadmap</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         DOCUMENTATION TECHNIQUE
+    ═══════════════════════════════════════ -->
+
+    <!-- ARCHITECTURE -->
+    <div class="page" id="page-architecture">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Architecture globale</h1>
+        <p>Deux types de composants ESP32 communiquant en WiFi UDP broadcast.</p>
+      </div>
+      <div class="section">
+        <table>
+          <tr><th>Composant</th><th>Rôle</th><th>Réseau</th></tr>
+          <tr><td><strong>Contrôleur (1x)</strong></td><td>Héberge le backoffice web, gère la logique de tirage, envoie les commandes</td><td>Point d'accès WiFi <code>CASINO_CTRL</code></td></tr>
+          <tr><td><strong>Light Node (Nx)</strong></td><td>Reçoit les commandes, pilote la bande LED WS2812 de la machine</td><td>Client WiFi connecté à <code>CASINO_CTRL</code></td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Flux de données</div>
+        <pre>iPhone / Tablette
+      │ HTTP
+      ▼
+Contrôleur ESP32 (192.168.4.1)
+      │ UDP broadcast → 192.168.4.255:4210
+      ▼
+Node 1  Node 2  Node 3  ...  Node N
+  │       │       │            │
+LED    LED    LED          LED</pre>
+      </div>
+    </div>
+
+    <!-- MATÉRIEL -->
+    <div class="page" id="page-materiel">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Matériel requis</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Par unité contrôleur</div>
+        <ul>
+          <li>1x ESP32 AZ-Delivery (ou équivalent)</li>
+          <li>1x câble USB-C pour alimentation</li>
+          <li>1x boîtier ABS type Hammond Manufacturing série 1591</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-title">Par Light Node</div>
+        <ul>
+          <li>1x ESP32 AZ-Delivery</li>
+          <li>1x bande LED WS2812 — longueur adaptée à la machine (14 LEDs recommandées)</li>
+          <li>1x profilé aluminium pour bande LED avec couvercle diffusant</li>
+          <li>Câbles Dupont ou connecteurs rapides pour le câblage</li>
+          <li>1x boîtier ABS pour l'ESP32 du node</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-title">Câblage du node</div>
+        <table>
+          <tr><th>Bande WS2812</th><th>ESP32</th><th>Couleur fil</th></tr>
+          <tr><td>VCC (5V)</td><td>Pin 5V ou alimentation externe</td><td>🔴 Rouge</td></tr>
+          <tr><td>GND</td><td>GND</td><td>⚫ Blanc / Noir</td></tr>
+          <tr><td>DATA</td><td>GPIO 5 (G5)</td><td>🟢 Vert</td></tr>
+        </table>
+        <div class="alert alert-warning">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content"><strong>Alimentation externe obligatoire</strong>Pour les bandes de plus de 30 LEDs, utiliser une alimentation externe 5V dédiée. Ne pas alimenter via le pin 5V de l'ESP32 qui est limité à 500mA.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RÉSEAU -->
+    <div class="page" id="page-reseau">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Architecture réseau</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Point d'accès WiFi</div>
+        <table>
+          <tr><th>Paramètre</th><th>Valeur</th></tr>
+          <tr><td>SSID</td><td><code>CASINO_CTRL</code></td></tr>
+          <tr><td>Mot de passe</td><td><code>casino123</code></td></tr>
+          <tr><td>IP du contrôleur</td><td><code>192.168.4.1</code></td></tr>
+          <tr><td>Port UDP</td><td><code>4210</code></td></tr>
+          <tr><td>Adresse broadcast</td><td><code>192.168.4.255</code></td></tr>
+          <tr><td>Clients max</td><td>20</td></tr>
+          <tr><td>Sécurité</td><td>WPA2</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Règles de communication</div>
+        <ul>
+          <li>Le contrôleur envoie des commandes UDP broadcast vers tous les nodes simultanément</li>
+          <li>Chaque node envoie un ping UDP vers le contrôleur toutes les <strong>5 secondes</strong></li>
+          <li>Le contrôleur déclare un node hors ligne après <strong>15 secondes</strong> sans ping</li>
+          <li>Le backoffice web se connecte au contrôleur via HTTP sur <code>192.168.4.1</code></li>
+          <li>Le backoffice se rafraîchit automatiquement toutes les 5 secondes (polling)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROTOCOLE -->
+    <div class="page" id="page-protocole">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Protocole de communication UDP</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Contrôleur → Nodes</div>
+        <table>
+          <tr><th>Commande</th><th>Format</th><th>Description</th></tr>
+          <tr><td>Position roulette</td><td><code>123</code></td><td>Numéro de la machine courante pendant le tirage</td></tr>
+          <tr><td>Gagnant roulette</td><td><code>WIN:X</code></td><td>Machine X gagnante — animation or + pulsation</td></tr>
+          <tr><td>Gagnant multi</td><td><code>WIN_COLOR:X:rrggbb</code></td><td>Machine X gagnante avec couleur hex spécifique</td></tr>
+          <tr><td>Célébration</td><td><code>CELEBRATE:X</code></td><td>Arc-en-ciel 3s sur la machine X puis retour couleur</td></tr>
+          <tr><td>Flash démarrage</td><td><code>FLASH_START</code></td><td>Flash blanc 200ms au démarrage du tirage</td></tr>
+          <tr><td>Éteindre</td><td><code>RESET_LEDS</code></td><td>Éteindre toutes les LEDs y compris gagnantes</td></tr>
+          <tr><td>Reset node</td><td><code>RESET_NODE:X</code></td><td>Remettre le node X en mode configuration</td></tr>
+          <tr><td>Reset global</td><td><code>RESET</code></td><td>Tous les nodes effacent leur mémoire et redémarrent</td></tr>
+          <tr><td>Ambiance globale</td><td><code>AMBIANCE:mode</code></td><td>Activer un mode ambiance sur tous les nodes</td></tr>
+          <tr><td>Ambiance ciblée</td><td><code>NODE_AMBIANCE:X:mode</code></td><td>Ambiance uniquement sur le node X</td></tr>
+          <tr><td>Couleur globale</td><td><code>COLOR:rrggbb</code></td><td>Couleur hex sur tous les nodes</td></tr>
+          <tr><td>Couleur individuelle</td><td><code>NODE_COLOR:X:rrggbb</code></td><td>Couleur hex sur le node X uniquement</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Nodes → Contrôleur</div>
+        <table>
+          <tr><th>Commande</th><th>Format</th><th>Description</th></tr>
+          <tr><td>Ping heartbeat</td><td><code>PING:X</code></td><td>Node X signale sa présence toutes les 5 secondes</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- BACKOFFICE -->
+    <div class="page" id="page-backoffice">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Backoffice web</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Accès</div>
+        <p>Accessible depuis n'importe quel navigateur connecté au WiFi <code>CASINO_CTRL</code> à l'adresse <code>http://192.168.4.1</code>. Compatible iPhone, iPad, Android.</p>
+      </div>
+      <div class="section">
+        <div class="section-title">Modes de tirage</div>
+        <h3>Roulette classique</h3>
+        <p>Animation de roulette sur toutes les machines avec ralentissement dramatique. Une seule machine gagnante, animation or avec pulsation.</p>
+        <h3>Multi-gagnantes</h3>
+        <p>Enchaînement de 2 à 6 roulettes successives. Chaque gagnante s'illumine dans une couleur unique et garde sa couleur jusqu'au reset. Célébration arc-en-ciel à la fin.</p>
+        <h3>Plage personnalisée</h3>
+        <p>Tirage restreint à une plage de numéros de machines définie. Utile pour les zones VIP ou secteurs spécifiques de la salle.</p>
+      </div>
+      <div class="section">
+        <div class="section-title">Paramètres</div>
+        <table>
+          <tr><th>Paramètre</th><th>Défaut</th><th>Description</th></tr>
+          <tr><td>Nombre de machines</td><td>Nb nodes connectés</td><td>Ajusté automatiquement selon les nodes en ligne</td></tr>
+          <tr><td>Vitesse</td><td>7 / 10</td><td>Contrôle la durée de la phase rapide</td></tr>
+          <tr><td>Plage De / À</td><td>1 / auto</td><td>Restreint le tirage à une plage de numéros</td></tr>
+          <tr><td>Nb gagnantes (multi)</td><td>3</td><td>Entre 2 et 6 gagnantes</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ANIMATIONS -->
+    <div class="page" id="page-animations">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Animations LED</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Animations de tirage</div>
+        <table>
+          <tr><th>Animation</th><th>Déclencheur</th><th>Description</th></tr>
+          <tr><td>Flash blanc</td><td><code>FLASH_START</code></td><td>Toutes les LEDs blanc 200ms au démarrage</td></tr>
+          <tr><td>Roulette cyan</td><td>Numéro courant</td><td>La machine courante s'allume en cyan</td></tr>
+          <tr><td>Ralentissement</td><td>Phase finale</td><td>Puissance 3, 12 steps, 380ms max — très progressif</td></tr>
+          <tr><td>Flash or gagnant</td><td><code>WIN</code> / <code>WIN_COLOR</code></td><td>8 flashs rapides puis pulsation douce infinie</td></tr>
+          <tr><td>Pulsation</td><td>Après les flashs</td><td>Oscillation 30%↔100% de la couleur gagnante</td></tr>
+          <tr><td>Arc-en-ciel</td><td><code>CELEBRATE</code></td><td>3 secondes d'arc-en-ciel puis retour couleur gagnante</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">États internes du node</div>
+        <table>
+          <tr><th>État</th><th>Valeur</th><th>Comportement</th></tr>
+          <tr><td>Idle</td><td><code>0</code></td><td>Répond à toutes les commandes normalement</td></tr>
+          <tr><td>Gagnant</td><td><code>2</code></td><td>Ignore les commandes de position roulette, garde sa couleur</td></tr>
+        </table>
+        <div class="alert alert-info">
+          <div class="alert-icon">ℹ️</div>
+          <div class="alert-content">Un node en état gagnant ne s'éteint que sur <code>RESET_LEDS</code>, <code>RESET</code> ou <code>RESET_NODE</code> — jamais sur les commandes de position roulette.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIGURATION -->
+    <div class="page" id="page-configuration">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Configuration des Light Nodes</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Premier démarrage</div>
+        <p>À la livraison ou après un reset, un node démarre en mode configuration :</p>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">LEDs orange</div><div class="step-desc">Le node démarre en mode configuration, les LEDs s'allument en orange.</div></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Connexion au réseau NODE_XXXXXX</div><div class="step-desc">Un réseau WiFi unique apparaît avec le suffixe MAC. Mot de passe : <code>config123</code>.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Saisie du numéro</div><div class="step-desc">Ouvrir 192.168.4.1, saisir le numéro de machine (1 à 999), valider.</div></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Confirmation</div><div class="step-desc">LEDs vertes 2 secondes → veille bleue → node prêt et connecté au CASINO_CTRL.</div></div></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-title">Procédure sur iPhone</div>
+        <div class="alert alert-warning">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content"><strong>Étape obligatoire entre chaque node</strong>Sans cette procédure, l'iPhone utilise le cache du réseau précédent et deux nodes reçoivent le même numéro.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Configurer le node</div><div class="step-desc">Attendre le redémarrage (LEDs vertes puis bleues).</div></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Oublier le réseau</div><div class="step-desc">Réglages → WiFi → appuyer sur (i) à côté de NODE_XXXXXX → Oublier ce réseau.</div></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Node suivant</div><div class="step-desc">Se connecter au prochain NODE_YYYYYY et taper manuellement 192.168.4.1.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTES -->
+    <div class="page" id="page-routes">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Routes HTTP du contrôleur</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Lecture</div>
+        <table>
+          <tr><th>Route</th><th>Méthode</th><th>Description</th></tr>
+          <tr><td><code>/</code></td><td>GET</td><td>Backoffice web complet (HTML)</td></tr>
+          <tr><td><code>/status</code></td><td>GET</td><td>État global : nodes, tirages, gagnant, mode, winners (JSON)</td></tr>
+          <tr><td><code>/nodes</code></td><td>GET</td><td>Liste des nodes avec statut en ligne / hors ligne (JSON)</td></tr>
+          <tr><td><code>/getZones</code></td><td>GET</td><td>Zones et assignations de nodes (JSON)</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Actions tirage</div>
+        <table>
+          <tr><th>Route</th><th>Paramètres</th><th>Description</th></tr>
+          <tr><td><code>/lancer</code></td><td>—</td><td>Démarre un nouveau tirage global</td></tr>
+          <tr><td><code>/lancerZone</code></td><td><code>zone=X</code></td><td>Démarre un tirage restreint à la zone X</td></tr>
+          <tr><td><code>/reset</code></td><td>—</td><td>Stoppe le tirage et éteint les LEDs</td></tr>
+          <tr><td><code>/stopTirage</code></td><td>—</td><td>Annule le tirage en cours</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Configuration</div>
+        <table>
+          <tr><th>Route</th><th>Paramètres</th><th>Description</th></tr>
+          <tr><td><code>/setMode</code></td><td><code>m=roulette|multi|plage</code></td><td>Définit le mode de tirage</td></tr>
+          <tr><td><code>/setNb</code></td><td><code>n=entier</code></td><td>Nombre total de machines</td></tr>
+          <tr><td><code>/setVitesse</code></td><td><code>v=1..10</code></td><td>Vitesse de la roulette</td></tr>
+          <tr><td><code>/setNbGagnantes</code></td><td><code>n=2..6</code></td><td>Nombre de gagnantes (mode multi)</td></tr>
+          <tr><td><code>/setPlage</code></td><td><code>min=X&max=Y</code></td><td>Plage de machines (mode plage)</td></tr>
+          <tr><td><code>/setAmbiance</code></td><td><code>m=mode</code></td><td>Active un mode ambiance global</td></tr>
+          <tr><td><code>/setColor</code></td><td><code>c=rrggbb</code></td><td>Couleur hex pour tous les nodes</td></tr>
+          <tr><td><code>/setNodeColor</code></td><td><code>n=X&c=rrggbb</code></td><td>Couleur hex pour le node X uniquement</td></tr>
+          <tr><td><code>/setZoneColor</code></td><td><code>zone=X&c=rrggbb</code></td><td>Couleur hex pour tous les nodes de la zone X</td></tr>
+          <tr><td><code>/setZoneAmbiance</code></td><td><code>zone=X&m=mode</code></td><td>Ambiance ciblée sur la zone X</td></tr>
+          <tr><td><code>/clearHistory</code></td><td>—</td><td>Efface l'historique des tirages</td></tr>
+          <tr><td><code>/clearMemory</code></td><td>—</td><td>Efface la mémoire flash et redémarre</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Gestion des nodes</div>
+        <table>
+          <tr><th>Route</th><th>Paramètres</th><th>Description</th></tr>
+          <tr><td><code>/deleteNode</code></td><td><code>n=X</code></td><td>Remet le node X en mode configuration</td></tr>
+          <tr><td><code>/resetNodes</code></td><td>—</td><td>Reset global de tous les nodes</td></tr>
+          <tr><td><code>/createZone</code></td><td><code>name=X</code></td><td>Crée une nouvelle zone</td></tr>
+          <tr><td><code>/deleteZone</code></td><td><code>id=X</code></td><td>Supprime la zone X</td></tr>
+          <tr><td><code>/renameZone</code></td><td><code>id=X&name=Y</code></td><td>Renomme la zone X</td></tr>
+          <tr><td><code>/assignNode</code></td><td><code>zone=X&node=Y</code></td><td>Assigne le node Y à la zone X</td></tr>
+          <tr><td><code>/removeNode</code></td><td><code>zone=X&node=Y</code></td><td>Retire le node Y de la zone X</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- DÉPENDANCES -->
+    <div class="page" id="page-dependances">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Dépendances logicielles</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Bibliothèques Arduino</div>
+        <table>
+          <tr><th>Bibliothèque</th><th>Version</th><th>Utilisation</th><th>Composant</th></tr>
+          <tr><td><code>WiFi.h</code></td><td>Built-in ESP32</td><td>Gestion WiFi AP et STA</td><td>Contrôleur + Node</td></tr>
+          <tr><td><code>WiFiUdp.h</code></td><td>Built-in ESP32</td><td>Communication UDP</td><td>Contrôleur + Node</td></tr>
+          <tr><td><code>WebServer.h</code></td><td>Built-in ESP32</td><td>Serveur HTTP backoffice</td><td>Contrôleur + Node</td></tr>
+          <tr><td><code>FastLED</code></td><td>3.x</td><td>Pilotage LEDs WS2812</td><td>Node uniquement</td></tr>
+          <tr><td><code>Preferences.h</code></td><td>Built-in ESP32</td><td>Stockage en mémoire flash</td><td>Contrôleur + Node</td></tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="section-title">Configuration Arduino IDE</div>
+        <table>
+          <tr><th>Paramètre</th><th>Valeur</th></tr>
+          <tr><td>Carte</td><td>ESP32 Dev Module</td></tr>
+          <tr><td>Upload Speed</td><td>115200 (en cas d'erreur) ou 921600</td></tr>
+          <tr><td>Flash Frequency</td><td>80MHz</td></tr>
+          <tr><td>Partition Scheme</td><td>Default</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROBLÈMES -->
+    <div class="page" id="page-problemes">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Problèmes connus & Solutions</h1>
+      </div>
+      <div class="section">
+        <table>
+          <tr><th>Symptôme</th><th>Cause probable</th><th>Solution</th></tr>
+          <tr><td>Deux nodes ont le même numéro</td><td>Cache WiFi iPhone</td><td>Oublier le réseau entre chaque configuration</td></tr>
+          <tr><td>Node hors ligne alors qu'il est branché</td><td>WiFi perdu après inactivité</td><td>Vérifier la portée WiFi — le node se reconnecte automatiquement</td></tr>
+          <tr><td>Erreur upload exit status 2</td><td>Problème connexion USB</td><td>Maintenir BOOT pendant upload, ou baisser la vitesse à 115200</td></tr>
+          <tr><td>La roulette ne s'arrête jamais</td><td>Plage incohérente avec le gagnant</td><td>Vérifier que plageMin ≤ numéro gagnant ≤ plageMax</td></tr>
+          <tr><td>LEDs restent allumées après tirage</td><td>Node en état gagnant (etat=2)</td><td>Appuyer sur Réinitialiser pour envoyer RESET_LEDS</td></tr>
+          <tr><td>Le menu Node se ferme seul</td><td>Reconstruction HTML par le poll</td><td>Résolu : lnSilent() / lzSilent() préservent l'état ouvert</td></tr>
+          <tr><td>Impossible de se connecter au WiFi</td><td>Limite de clients WiFi atteinte</td><td>Max 20 clients configuré via WiFi.softAP(..., 20)</td></tr>
+          <tr><td>Node 6 ne s'allume jamais</td><td>Bug modulo quand gagnante = nbPlage</td><td>Résolu dans la dernière version du contrôleur</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ÉVOLUTIONS -->
+    <div class="page" id="page-evolutions">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Évolutions prévues</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Court terme</div>
+        <ul>
+          <li>Tests de stabilité avec plus de 10 nodes simultanés</li>
+          <li>Authentification du backoffice — mot de passe pour sécuriser l'accès</li>
+          <li>Réglage de luminosité depuis le backoffice</li>
+          <li>NUM_LEDS configurable sans recompilation</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-title">Moyen terme</div>
+        <ul>
+          <li>Boîtier industriel sur mesure avec connectique rapide</li>
+          <li>Mode démo autonome — tirages automatiques en boucle</li>
+          <li>Mise à jour OTA (Over The Air) via WiFi</li>
+          <li>Sauvegarde persistante des 100 derniers tirages</li>
+          <li>Personnalisation par casino — logo, couleurs, nom de l'établissement</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="section-title">Long terme</div>
+        <ul>
+          <li>Version RS485 filaire pour grandes installations (200+ machines)</li>
+          <li>Multi-salles — contrôleur central pilotant plusieurs salles simultanément</li>
+          <li>Intégration CRM / carte de fidélité</li>
+          <li>Certification casino pour usage professionnel réglementé (GLI / BMM)</li>
+          <li>API REST formelle avec authentification par token</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ANNEXES -->
+    <div class="page" id="page-annexes">
+      <div class="hero">
+        <div class="hero-badge">Documentation technique</div>
+        <h1>Annexes</h1>
+      </div>
+      <div class="section">
+        <div class="section-title">Format JSON — /status</div>
+        <pre>{
+  "nodesOnline": 6,
+  "nodesTotal": 6,
+  "nbMachines": 6,
+  "tiragesAujourdhui": 12,
+  "dernierGagnant": 4,
+  "modeActuel": "roulette",
+  "tirageTermine": true,
+  "winners": [1, 3]
+}</pre>
+      </div>
+      <div class="section">
+        <div class="section-title">Format JSON — /nodes</div>
+        <pre>[
+  { "num": 1, "online": true },
+  { "num": 2, "online": true },
+  { "num": 3, "online": false }
+]</pre>
+      </div>
+      <div class="section">
+        <div class="section-title">Format JSON — /getZones</div>
+        <pre>[
+  { "id": 0, "nom": "Zone VIP", "nodes": [1, 2, 3] },
+  { "id": 1, "nom": "Zone B",   "nodes": [4, 5, 6] }
+]</pre>
+      </div>
+      <div class="section">
+        <div class="section-title">Adressage des nodes</div>
+        <p>Chaque node est identifié par un numéro entier de 1 à 999 stocké en mémoire flash. Ce numéro correspond au numéro de la machine à sous physique dans la salle.</p>
+        <p>En mode configuration, le réseau WiFi du node est nommé <code>NODE_XXXXXX</code> où XXXXXX est le suffixe hexadécimal des 3 derniers octets de l'adresse MAC — garantissant l'unicité même avec des dizaines de nodes.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         FAQ
+    ═══════════════════════════════════════ -->
+
+    <!-- FAQ ARCHITECTURE -->
+    <div class="page" id="page-faq-archi">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Architecture & Communication</h1>
+      </div>
+      <div id="faq-archi-content"></div>
+    </div>
+
+    <!-- FAQ FIABILITÉ -->
+    <div class="page" id="page-faq-fiab">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Fiabilité & Stabilité</h1>
+      </div>
+      <div id="faq-fiab-content"></div>
+    </div>
+
+    <!-- FAQ TIRAGE -->
+    <div class="page" id="page-faq-tirage">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Tirage & Équité</h1>
+      </div>
+      <div id="faq-tirage-content"></div>
+    </div>
+
+    <!-- FAQ BACKOFFICE -->
+    <div class="page" id="page-faq-bo">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Backoffice & Interface</h1>
+      </div>
+      <div id="faq-bo-content"></div>
+    </div>
+
+    <!-- FAQ CONFIG -->
+    <div class="page" id="page-faq-config">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Configuration & Installation</h1>
+      </div>
+      <div id="faq-config-content"></div>
+    </div>
+
+    <!-- FAQ LEDS -->
+    <div class="page" id="page-faq-leds">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>LEDs & Animations</h1>
+      </div>
+      <div id="faq-leds-content"></div>
+    </div>
+
+    <!-- FAQ ZONES -->
+    <div class="page" id="page-faq-zones">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Zones & Gestion avancée</h1>
+      </div>
+      <div id="faq-zones-content"></div>
+    </div>
+
+    <!-- FAQ SÉCURITÉ -->
+    <div class="page" id="page-faq-secu">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Sécurité & Casino</h1>
+      </div>
+      <div id="faq-secu-content"></div>
+    </div>
+
+    <!-- FAQ ÉVOLUTIVITÉ -->
+    <div class="page" id="page-faq-evol">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Évolutivité & Avenir</h1>
+      </div>
+      <div id="faq-evol-content"></div>
+    </div>
+
+    <!-- FAQ COÛT -->
+    <div class="page" id="page-faq-cout">
+      <div class="hero">
+        <div class="hero-badge">FAQ Technique</div>
+        <h1>Coût & Maintenance</h1>
+      </div>
+      <div id="faq-cout-content"></div>
+    </div>
+
+  </div>
+</div>
+
+<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<script src="faq-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
